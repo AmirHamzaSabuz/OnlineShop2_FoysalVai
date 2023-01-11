@@ -1,0 +1,43 @@
+﻿@model OnlineShop2.Models.ProductType
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<br />
+<div class="row">
+    <div class="col-10 offset-1">
+
+        <h2 class="text-info">Delete Product Type</h2>
+
+        <form method="post" asp-action="Delete">
+            <div class="p-4 rounded border">
+                <input type="hidden" asp-for="Id"/>
+                <div asp-validation-summary="ModelOnly" class="text-danger">
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-2">
+                        <label asp-for="ProductTypeName"></label>
+                    </div>
+                    <div class="col-9">
+                        <input asp-for="ProductTypeName" readonly="readonly" class="form-control" />
+                        <span asp-validation-for="ProductTypeName" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <br />
+                <div class="form-group">
+                    <input type="submit" class="btn btn-danger" value="Delete" />
+                    <a asp-action="Index" class="btn btn-success">Back to List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+    }
+    }
