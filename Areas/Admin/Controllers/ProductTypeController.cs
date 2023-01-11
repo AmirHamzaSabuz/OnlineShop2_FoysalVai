@@ -35,6 +35,7 @@ namespace OnlineShop2.Areas.Admin.Controllers
             { 
                 _db.ProductTypes.Add(productType);
                 await _db.SaveChangesAsync();
+                TempData["save"] = "Data has been created successfully.";
                 return RedirectToAction(nameof(Index));
             }
             return View(productType);
@@ -67,6 +68,7 @@ namespace OnlineShop2.Areas.Admin.Controllers
             {
                 _db.ProductTypes.Update(productType);
                 await _db.SaveChangesAsync();
+                TempData["save"] = "Data has been updated successfully.";
                 return RedirectToAction(nameof(Index));
             }
             return View(productType);
@@ -128,6 +130,7 @@ namespace OnlineShop2.Areas.Admin.Controllers
             //{
             //_db.ProductTypes.Remove(product_Type);
             _db.ProductTypes.Remove(productType);
+            TempData["save"] = "Data has been deleted successfully.";
             await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             //}

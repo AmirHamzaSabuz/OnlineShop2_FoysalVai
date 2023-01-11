@@ -47,3 +47,20 @@
     </div>
     </div>
 </div>
+
+@section scripts{
+
+<script type="text/javascript">
+    $(
+        function(){
+            var save = '@TempData["save"]'
+            if(save != '')
+            {
+                    alertify.success(save);
+            }
+
+        }
+    )
+</script>
+
+}
