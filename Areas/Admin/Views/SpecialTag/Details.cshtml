@@ -1,14 +1,13 @@
-﻿@model OnlineShop2.Models.ProductType
+﻿@model OnlineShop2.Models.SpecialTag
 @{
     ViewData["Title"] = "Details";
 }
-
 
 <br />
 <div class="row">
     <div class="col-10 offset-1">
 
-        <h2 class="text-info">Details Product Type</h2>
+        <h2 class="text-info">Details Special Tag</h2>
 
         <form method="post" asp-action="Details">
             <div class="p-4 rounded border">
@@ -17,16 +16,16 @@
 
                 <div class="form-group row">
                     <div class="col-2">
-                        <label asp-for="ProductTypeName"></label>
+                        <label asp-for="Name"></label>
                     </div>
                     <div class="col-9">
-                        <input asp-for="ProductTypeName" readonly class="form-control" />
-                        <span asp-validation-for="ProductTypeName" class="text-danger"></span>
+                        <input asp-for="Name" readonly class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
 
                 </div>
                 <br />
-                <div class="form-group">       
+                <div class="form-group">
                     <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
                     <a asp-action="Index" class="btn btn-success">Back to List</a>
                 </div>
@@ -39,3 +38,5 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
     }
     }
+
+
