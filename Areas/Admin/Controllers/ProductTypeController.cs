@@ -89,14 +89,6 @@ namespace OnlineShop2.Areas.Admin.Controllers
 
         }
 
-        //Details Post
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Details(ProductType productType)
-        {
-
-            return RedirectToAction(nameof(Index));
-
-        }
+        
     }
 }
