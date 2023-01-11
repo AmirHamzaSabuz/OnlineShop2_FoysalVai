@@ -1,0 +1,32 @@
+﻿@model int 
+
+<td style="width:150px">
+    <div class="btn-group">
+        <a 
+            asp-action="Edit" 
+            asp-controller="ProductType"
+           class="btn btn-warning  m-1"
+            asp-route-id="@Model"
+           
+        >
+            Edit
+        </a>
+        <a asp-action="Details"
+           asp-controller="ProductType"
+           class="btn btn-success  m-1"
+           asp-route-id="@Model"
+           
+        >
+            Details
+        </a>
+        <a asp-action="Details"
+           asp-controller="ProductType"
+           class="btn btn-danger  m-1"
+           asp-route-id="@Model"
+          
+        >
+            Delete
+        </a>
+    </div>
+</td>
+
