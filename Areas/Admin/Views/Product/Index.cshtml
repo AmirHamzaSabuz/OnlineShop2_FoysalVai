@@ -1,0 +1,89 @@
+﻿@*
+@using OnlineShop2.Models
+@model IEnumerable<Product>*@
+
+
+@model IEnumerable<OnlineShop2.Models.Product>
+
+
+<div class="row">
+    <div class="col-10 offset-1">
+
+
+        <div class="row">
+            <div class="col-6">
+                <h2 class="text-info">Product List</h2>
+            </div>
+            <div class="col-6 text-right">
+
+                <a asp-action="Create" class="btn btn-info float-end"> &nbsp;  <i class="fa-sharp fa-solid fa-circle-plus"></i> New Product &nbsp; </a>
+            </div>
+        </div>
+        <br />
+        <div>
+            <table class="table table-striped border">
+                <tr class="table-info">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductColor)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsAvailable)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductTypeId)
+                    </th>
+                    <th></th>
+                    <th width="40%">Actions</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            @item.Price
+                        </td>
+                        <td>
+                            @item.ProductColor
+                        </td>
+                        <td>
+                            @item.IsAvailable
+                        </td>
+                        <td>
+                            @item.ProductType.ProductTypeName
+                        </td>
+                        <td width="40%">
+                            <partial name="_ButtonPartial" model="item.Id">
+                        </td>
+                    </tr>
+                }
+                <tr>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script type="text/javascript">
+        $(
+            function () {
+                var save = '@TempData["save"]'
+                if (save != '') {
+                    alertify.success(save);
+                }
+
+            }
+        )
+    </script>
+
+}
+
