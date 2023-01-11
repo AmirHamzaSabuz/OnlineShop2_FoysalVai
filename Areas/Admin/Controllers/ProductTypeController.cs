@@ -41,7 +41,7 @@ namespace OnlineShop2.Areas.Admin.Controllers
         }
 
 
-        // Create Get
+        // Edit Get
         public IActionResult Edit(int? id)
         {
             if (id == null)
@@ -58,7 +58,7 @@ namespace OnlineShop2.Areas.Admin.Controllers
             
         }
 
-        //Create Post
+        //Edit Post
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ProductType productType)
@@ -70,6 +70,33 @@ namespace OnlineShop2.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(productType);
+        }
+
+        // Details Get
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            //var productType = _db.ProductTypes.Find(id);
+            var productType = _db.ProductTypes.FirstOrDefault(x => x.Id == id);
+            if (productType == null)
+            {
+                return NotFound();
+            }
+            return View(productType);
+
+        }
+
+        //Details Post
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Details(ProductType productType)
+        {
+
+            return RedirectToAction(nameof(Index));
+
         }
     }
 }
