@@ -60,7 +60,7 @@
                     </div>
                     <div class="col-9">
                         @*<input asp-for="ProductTypeId" class="form-control" />*@
-                        <select asp-for="ProductTypeId" asp-items="ViewBag.TypeId" class="form-control"></select>
+                        <select asp-for="ProductTypeId" asp-items="ViewBag.TypeId" class="form-select"></select>
                         <span asp-validation-for="ProductTypeId" class="text-danger"></span>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                     </div>
                     <div class="col-9">
                         @*<input asp-for="SpecialTagId" class="form-control" />*@
-                        <select asp-for="SpecialTagId" asp-items="ViewBag.TagId" class="form-control"></select>
+                        <select asp-for="SpecialTagId" asp-items="ViewBag.TagId" class="form-select"></select>
                         <span asp-validation-for="SpecialTagId" class="text-danger"></span>
                     </div>
                 </div>

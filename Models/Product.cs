@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnlineShop2.Models
@@ -16,6 +17,7 @@ namespace OnlineShop2.Models
         [Display(Name ="Product Color")]
         public string ProductColor { get; set; }
 
+        [ValidateNever]
         public string ImageUrl { get; set; }
 
         [Required]
@@ -27,14 +29,16 @@ namespace OnlineShop2.Models
         public int ProductTypeId { get; set; }
 
         [ForeignKey("ProductTypeId")]
-        public virtual ProductType ProductType { get; set; }
+        [ValidateNever]
+        public ProductType ProductType { get; set; }
 
         [Required]
         [Display(Name = "Special Tag")]
         public int SpecialTagId { get; set; }
 
         [ForeignKey("SpecialTagId")]
-        public virtual SpecialTag SpecialTag { get; set; }
+        [ValidateNever]
+        public SpecialTag SpecialTag { get; set; }
 
     }
 }

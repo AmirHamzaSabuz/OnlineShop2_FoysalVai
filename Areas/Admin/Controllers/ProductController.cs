@@ -35,7 +35,7 @@ namespace OnlineShop2.Areas.Admin.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Create(Product product, IFormFile imageFile )
-        {
+        {            
             if (ModelState.IsValid)
             {
                 if (imageFile != null)
