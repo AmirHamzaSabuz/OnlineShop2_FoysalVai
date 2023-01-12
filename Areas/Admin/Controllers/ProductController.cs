@@ -30,6 +30,18 @@ namespace OnlineShop2.Areas.Admin.Controllers
         {
             ViewData["TypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductTypeName");
             ViewData["TagId"] = new SelectList(_db.SpecialTags.ToList(), "Id", "Name");
+            //ViewData["TypeId"] = _db.ProductTypes.ToList().Select(
+            //    i => new SelectListItem
+            //    {
+            //        Text = i.ProductTypeName,
+            //        Value = i.Id.ToString()
+            //    });
+            //ViewData["TagId"] = _db.SpecialTags.ToList().Select(
+            //    i => new SelectListItem
+            //    {
+            //        Text = i.Name,
+            //        Value = i.Id.ToString()
+            //    });
             return View();
         }
 
