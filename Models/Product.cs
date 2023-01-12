@@ -27,14 +27,14 @@ namespace OnlineShop2.Models
         public int ProductTypeId { get; set; }
 
         [ForeignKey("ProductTypeId")]
-        public ProductType ProductType { get; set; }
+        public virtual ProductType ProductType { get; set; }
 
         [Required]
         [Display(Name = "Special Tag")]
         public int SpecialTagId { get; set; }
 
         [ForeignKey("SpecialTagId")]
-        public SpecialTag SpecialTag { get; set; }
+        public virtual SpecialTag SpecialTag { get; set; }
 
     }
 }
