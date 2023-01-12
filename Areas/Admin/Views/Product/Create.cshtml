@@ -39,7 +39,7 @@
                         <label asp-for="ImageUrl"></label>
                     </div>
                     <div class="col-9">
-                        <input asp-for="ImageUrl" class="form-control" type="file" name="imageFile" />
+                        <input  class="form-control" type="file" name="imageFile" />
                         <span asp-validation-for="ImageUrl" class="text-danger"></span>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
 </div>
 @section Scripts{
     @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+        //await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
     }
     }
 

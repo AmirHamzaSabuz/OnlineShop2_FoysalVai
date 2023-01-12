@@ -46,7 +46,7 @@ namespace OnlineShop2.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Product product, IFormFile imageFile )
+        public async Task<IActionResult> Create(Product product, IFormFile? imageFile )
         {            
             if (ModelState.IsValid)
             {
@@ -60,6 +60,10 @@ namespace OnlineShop2.Areas.Admin.Controllers
                     await imageFile.CopyToAsync(new FileStream(path, FileMode.Create));
                     product.ImageUrl = "Images/" + imageFile.FileName;
 
+                }
+                else
+                {
+                    product.ImageUrl = "Image/no-image-png-2.png";
                 }
                 _db.Products.Add(product);
                 await _db.SaveChangesAsync();
