@@ -51,6 +51,14 @@ namespace OnlineShop2.Areas.Admin.Controllers
         {            
             if (ModelState.IsValid)
             {
+                var searcheProduct = _db.Products.FirstOrDefault(p => p.Name == product.Name);
+                if (searcheProduct!=null)
+                {
+                    ViewBag.message = "This product is already exist.";       
+                    ViewData["TypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductTypeName");
+                    ViewData["TagId"] = new SelectList(_db.SpecialTags.ToList(), "Id", "Name");
+                    return View(product);
+                }
                 if (imageFile != null)
                 {
                     //var wwwroot = _webHostEnvironment.WebRootPath;
@@ -133,5 +141,52 @@ namespace OnlineShop2.Areas.Admin.Controllers
             return View(product);
         }
 
+        public IActionResult Delete(int? id)
+        {
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
+            var product = _db.Products.Include(x=> x.ProductType).Include(y => y.SpecialTag).FirstOrDefault(p => p.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            
+            return View(product);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirm(Product product)
+        {
+
+            //var product = _db.Products.FirstOrDefault(p => p.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            _db.Products.Remove(product);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        //[HttpPost]
+        //[ActionName("Delete")]
+        //public async Task<IActionResult> DeleteConfirm(int? id)
+        //{
+        //    //if (id == null)
+        //    //{
+        //    //    return NotFound();
+        //    //}
+        //    var product = _db.Products.FirstOrDefault(p => p.Id == id);
+        //    if (product == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    _db.Products.Remove(product);
+        //    await _db.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
     }
 }
