@@ -84,6 +84,27 @@
                         </tr>
                     }
                 </tbody>
+                @*<tfoot>
+                    <tr class="table-info">
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProductColor)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IsAvailable)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProductTypeId)
+                        </th>
+                        <th></th>
+                        <th>Actions</th>
+                    </tr>
+                </tfoot>*@
             </table>
         </div>
     </div>
@@ -93,9 +114,17 @@
 
     <script type="text/javascript">
 
+
         $(document).ready(function () {
-            $('#myTable').DataTable();
+            $('#myTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print', 'colvis'
+                ]
+            });
         });
+
+
 
         $(
             function () {
