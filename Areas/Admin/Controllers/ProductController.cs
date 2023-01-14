@@ -71,5 +71,18 @@ namespace OnlineShop2.Areas.Admin.Controllers
             }
             return View(product);
         }
+
+        public IActionResult Edit(int? id)
+        {
+            ViewData["TypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductTypeName");
+            ViewData["TagId"] = new SelectList(_db.SpecialTags.ToList(), "Id", "Name");
+
+            var product = _db.Products.Include(x => x.ProductType).Include(y => y.SpecialTag).FirstOrDefault(p => p.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
     }
 }
