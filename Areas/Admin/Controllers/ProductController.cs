@@ -75,6 +75,11 @@ namespace OnlineShop2.Areas.Admin.Controllers
 
         public IActionResult Edit(int? id)
         {
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
+
             ViewData["TypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductTypeName");
             ViewData["TagId"] = new SelectList(_db.SpecialTags.ToList(), "Id", "Name");
 
@@ -110,6 +115,20 @@ namespace OnlineShop2.Areas.Admin.Controllers
                 _db.Products.Update(product);
                 await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
+            }
+            return View(product);
+        }
+
+        public IActionResult Details(int? id)
+        {
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
+            var product = _db.Products.Include(x => x.ProductType).Include(y => y.SpecialTag).FirstOrDefault(p => p.Id == id);
+            if (product == null)
+            {
+                return NotFound();
             }
             return View(product);
         }
