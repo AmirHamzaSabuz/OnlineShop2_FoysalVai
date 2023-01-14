@@ -26,6 +26,13 @@ namespace OnlineShop2.Areas.Admin.Controllers
             return View(products);
         }
 
+        [HttpPost]
+        public IActionResult Index(decimal lowAmount, decimal largeAmout)
+        {
+            var products = _db.Products.Include(x => x.ProductType).Include(y => y.SpecialTag).Where(p => p.Price >=lowAmount && p.Price <= largeAmout).ToList();
+            return View(products);
+        }
+
         public IActionResult Create()
         {
             ViewData["TypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductTypeName");

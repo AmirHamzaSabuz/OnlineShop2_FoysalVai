@@ -15,10 +15,26 @@
                 <h2 class="text-info">Product List</h2>
             </div>
             <div class="col-6 text-right">
-
                 <a asp-action="Create" class="btn btn-info float-end"> &nbsp;  <i class="fa-sharp fa-solid fa-circle-plus"></i> New Product &nbsp; </a>
             </div>
         </div>
+
+        <form method="post">
+            <div class="row">
+                <div class="col-3">
+                    <input type="number" class="form-control" name="lowAmount" placeholder="write low amount"/>
+                </div>
+                <div class="col-3">
+                    <input type="number" class="form-control" name="largeAmout" placeholder="write large amount" />
+                </div>
+                <div class="col-3">
+                    <input type="submit" class="btn btn-success" value="Search"/>
+                </div>
+                <div class="col-3">
+                </div>
+            </div>
+        </form>
+
         <br />
         <div>
             <table class="table table-striped border">
