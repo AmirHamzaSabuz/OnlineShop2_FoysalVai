@@ -46,6 +46,7 @@ namespace OnlineShop2.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Product product, IFormFile? imageFile )
         {            
             if (ModelState.IsValid)
@@ -84,5 +85,34 @@ namespace OnlineShop2.Areas.Admin.Controllers
             }
             return View(product);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Product product, IFormFile? imageFile)
+        {
+            if (ModelState.IsValid)
+            {
+                if (imageFile != null)
+                {
+                    //var wwwroot = _webHostEnvironment.WebRootPath;
+                    //var imageFileName = Path.GetFileName(image.FileName);
+                    //var path = Path.Combine(wwwroot + "/Images", imageFileName);
+                    var path = Path.Combine(_webHostEnvironment.WebRootPath + "/Images", Path.GetFileName(imageFile.FileName));
+
+                    await imageFile.CopyToAsync(new FileStream(path, FileMode.Create));
+                    product.ImageUrl = "Images/" + imageFile.FileName;
+
+                }
+                else
+                {
+                    product.ImageUrl = "Image/no-image-png-2.png";
+                }
+                _db.Products.Update(product);
+                await _db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(product);
+        }
+
     }
 }

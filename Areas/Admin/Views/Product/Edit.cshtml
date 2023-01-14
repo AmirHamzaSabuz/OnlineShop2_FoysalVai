@@ -9,7 +9,7 @@
         <h2 class="text-info">Edit Product</h2>
 
         <form method="post" asp-action="Edit" enctype="multipart/form-data">
-
+            <input type="hidden" asp-for="Id"/>
             <div class="p-4 rounded border row bg-light">
                 <div asp-validation-summary="ModelOnly" class="text-danger">
                 </div>
@@ -100,7 +100,7 @@
                 </div>
                 <div class="col-1"></div>
                 <div class="col-3">
-                    <img src = "~/@Model.ImageUrl" width="100%"/>
+                    <img src = "~/@Model.ImageUrl" width="100%" style="border-radius:10px; border:1px solid #efefef"/>
                 </div>
  
             </div>
