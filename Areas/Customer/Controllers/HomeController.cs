@@ -32,5 +32,20 @@ namespace OnlineShop2.Areas.Customer.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        // Get product detail action method
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var product = _db.Products.Include(c => c.ProductType).FirstOrDefault(c => c.Id==id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
     }
 }

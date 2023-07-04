@@ -1,0 +1,119 @@
+﻿@model OnlineShop2.Models.Product
+@{
+    ViewData["Title"] = "Details";
+}
+<br />
+<div class="row">
+    <div class="col-10 offset-1">
+
+        <h2 class="text-info"> Product Details</h2>
+
+        <form method="" asp-action="" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+            <div class="p-4 rounded border row bg-light">
+                <div asp-validation-summary="ModelOnly" class="text-danger">
+                </div>
+                <div class="col-8">
+                    <div class="form-group row pt-3">
+                        <div class="col-4">
+                            <label asp-for="Name"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Name" class="form-control" readonly />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row pt-3">
+                        <div class="col-4">
+                            <label asp-for="Price"></label>
+
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Price" class="form-control" readonly />
+
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    @*<div class="form-group row pt-3">
+                        <div class="col-4">
+                            <label asp-for="ImageUrl"></label>
+                        </div>
+                        <div class="col-8">
+                            <input class="form-control" type="file" name="imageFile" />
+                            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                        </div>
+                    </div>*@
+
+                    <div class="form-group row pt-1">
+                        <div class="col-4">
+                            <label asp-for="ProductColor"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="ProductColor" class="form-control" readonly />
+                            <span asp-validation-for="ProductColor" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row pt-3">
+                        <div class="col-4">
+                            <label asp-for="ProductTypeId"></label>
+
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="ProductTypeId" readonly class="form-control" />
+                            @*<select asp-for="ProductTypeId" asp-items="ViewBag.TypeId" class="form-select"></select>*@
+                            <span asp-validation-for="ProductTypeId" class="text-danger"></span>
+                            
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="form-group row pt-1">
+                        <div class="col-4">
+                            
+                        </div>
+                        <div class="col-8">
+                            <input type="submit" class="btn btn-info" value="Add to Cart" />
+                        </div>
+                    </div>
+
+
+
+                    <br />
+                    <div class="form-group pt-3">
+                        
+
+                        <a asp-action="Index" class="btn btn-success">Back to List</a>
+                    </div>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-3">
+                    <div>
+                    <img src="~/@Model.ImageUrl" width="100%" style="border-radius:10px; border:2px solid #000000" />
+                    </div>
+                    <div class="text-center">
+                    @if(Model.IsAvailable)
+                    {
+                        <img src="~/images/instock.jpg" width=" 70%"/>
+                    }
+                    else
+                    {
+                        <img src="~/images/not_in_stock.jpg" width="80%" />
+                    }
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    @{
+        //await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+    }
+    }
+
+
