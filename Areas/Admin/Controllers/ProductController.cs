@@ -79,8 +79,9 @@ namespace OnlineShop2.Areas.Admin.Controllers
                 }
                 else
                 {
-                    product.ImageUrl = "Image/no-image-png-2.png";
+                    product.ImageUrl = "Image/NoImage3.jpg";
                 }
+                
                 _db.Products.Add(product);
                 await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -114,19 +115,32 @@ namespace OnlineShop2.Areas.Admin.Controllers
             {
                 if (imageFile != null)
                 {
+
+                    //for saving new image
+
+
                     //var wwwroot = _webHostEnvironment.WebRootPath;
                     //var imageFileName = Path.GetFileName(image.FileName);
                     //var path = Path.Combine(wwwroot + "/Images", imageFileName);
                     var path = Path.Combine(_webHostEnvironment.WebRootPath + "/Images", Path.GetFileName(imageFile.FileName));
 
                     await imageFile.CopyToAsync(new FileStream(path, FileMode.Create));
+
+                    // Set the new image URL
                     product.ImageUrl = "Images/" + imageFile.FileName;
 
                 }
+
                 else
                 {
-                    product.ImageUrl = "Image/no-image-png-2.png";
+                    // Retrieve the existing value of ImageUrl from the database
+                    var existingProduct = _db.Products.AsNoTracking().FirstOrDefault(p => p.Id == product.Id);
+                    if (existingProduct != null)
+                    {
+                        product.ImageUrl = existingProduct.ImageUrl;
+                    }
                 }
+
                 _db.Products.Update(product);
                 await _db.SaveChangesAsync();
                 return RedirectToAction("Index");

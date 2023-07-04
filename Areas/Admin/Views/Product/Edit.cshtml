@@ -98,9 +98,13 @@
                         <a asp-action="Index" class="btn btn-success">Back to List</a>
                     </div>
                 </div>
-                <div class="col-1"></div>
-                <div class="col-3">
-                    <img src = "~/@Model.ImageUrl" width="100%" style="border-radius:10px; border:1px solid #efefef"/>
+                
+                <div class="col-4">
+                    <div>
+                        <img src="~/@Model.ImageUrl" id="ImgPreview" width="100%" style="border-radius:10px; border:2px solid #000000" />
+                    </div>
+                    @*<div style="text-align:center">Image Preview</div>*@
+                    <div class="text-center">Image Preview</div>
                 </div>
  
             </div>
@@ -111,6 +115,22 @@
     @{
         //await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
     }
+
+    <script>
+        $(document).ready(() => {
+            $("input[name='imageFile']").change(function () {
+                const file = this.files[0];
+                if (file) {
+                    let reader = new FileReader();
+                    reader.onload = function (event) {
+                        $("#ImgPreview").attr("src", event.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+
     }
 
 

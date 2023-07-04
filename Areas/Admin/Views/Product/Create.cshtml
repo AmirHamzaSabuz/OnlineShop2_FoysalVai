@@ -10,98 +10,130 @@
 
         <form method="post" asp-action="Create" enctype="multipart/form-data">
            
-            <div class="p-4 rounded border">
+            <div class="p-4 rounded border row">
                 <div asp-validation-summary="ModelOnly" class="text-danger">
                 </div>
                 <h4>@ViewBag.message</h4>
-                <div class="form-group row pt-1">
-                    <div class="col-2">
-                        <label asp-for="Name"></label>
+                <div class="col-8">
+                    <div class="form-group row pt-1">
+                        <div class="col-2">
+                            <label asp-for="Name"></label>
+                        </div>
+                        <div class="col-9">
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
                     </div>
-                    <div class="col-9">
-                        <input asp-for="Name" class="form-control" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
+
+                    <div class="form-group row pt-1">
+                        <div class="col-2">
+                            <label asp-for="Price"></label>
+                        </div>
+                        <div class="col-9">
+                            <input asp-for="Price" class="form-control" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row pt-1">
+                        <div class="col-2">
+                            <label asp-for="ImageUrl"></label>
+                        </div>
+                        <div class="col-9">
+                            <input class="form-control" type="file" id="imageFile" name="imageFile" />
+                            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row pt-1">
+                        <div class="col-2">
+                            <label asp-for="ProductColor"></label>
+                        </div>
+                        <div class="col-9">
+                            <input asp-for="ProductColor" class="form-control" />
+                            <span asp-validation-for="ProductColor" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row pt-1">
+                        <div class="col-2">
+                            <label asp-for="ProductTypeId"></label>
+                        </div>
+                        <div class="col-9">
+                            @*<input asp-for="ProductTypeId" class="form-control" />*@
+                            <select asp-for="ProductTypeId" asp-items="ViewBag.TypeId" class="form-select"></select>
+                            <span asp-validation-for="ProductTypeId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row pt-1">
+                        <div class="col-2">
+                            <label asp-for="SpecialTagId"></label>
+                        </div>
+                        <div class="col-9">
+                            @*<input asp-for="SpecialTagId" class="form-control" />*@
+                            <select asp-for="SpecialTagId" asp-items="ViewBag.TagId" class="form-select"></select>
+                            <span asp-validation-for="SpecialTagId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row pt-1">
+                        <div class="col-2">
+                            <label asp-for="IsAvailable"></label>
+                        </div>
+                        <div class="col-9">
+                            <input asp-for="IsAvailable"  type="checkbox" />
+                            <span asp-validation-for="IsAvailable" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group pt-1">
+                        <input type="submit" class="btn btn-primary" value="Save" />
+
+                        <a asp-action="Index" class="btn btn-success">Back to List</a>
                     </div>
                 </div>
 
-                <div class="form-group row pt-1">
-                    <div class="col-2">
-                        <label asp-for="Price"></label>
+                 <div class="col-4">
+                     <div>
+                        <img id="imgPreview" src="~/image/white2.jpg" alt="Image Preview" width="100%" style="border-radius:10px; border:2px solid #000000" />
                     </div>
-                    <div class="col-9">
-                        <input asp-for="Price" class="form-control" />
-                        <span asp-validation-for="Price" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="form-group row pt-1">
-                    <div class="col-2">
-                        <label asp-for="ImageUrl"></label>
-                    </div>
-                    <div class="col-9">
-                        <input  class="form-control" type="file" name="imageFile" />
-                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="form-group row pt-1">
-                    <div class="col-2">
-                        <label asp-for="ProductColor"></label>
-                    </div>
-                    <div class="col-9">
-                        <input asp-for="ProductColor" class="form-control" />
-                        <span asp-validation-for="ProductColor" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="form-group row pt-1">
-                    <div class="col-2">
-                        <label asp-for="ProductTypeId"></label>
-                    </div>
-                    <div class="col-9">
-                        @*<input asp-for="ProductTypeId" class="form-control" />*@
-                        <select asp-for="ProductTypeId" asp-items="ViewBag.TypeId" class="form-select"></select>
-                        <span asp-validation-for="ProductTypeId" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="form-group row pt-1">
-                    <div class="col-2">
-                        <label asp-for="SpecialTagId"></label>
-                    </div>
-                    <div class="col-9">
-                        @*<input asp-for="SpecialTagId" class="form-control" />*@
-                        <select asp-for="SpecialTagId" asp-items="ViewBag.TagId" class="form-select"></select>
-                        <span asp-validation-for="SpecialTagId" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="form-group row pt-1">
-                    <div class="col-2">
-                        <label asp-for="IsAvailable"></label>
-                    </div>
-                    <div class="col-9">
-                        <input asp-for="IsAvailable"  type="checkbox" />
-                        <span asp-validation-for="IsAvailable" class="text-danger"></span>
-                    </div>
-                </div>
+                    @*<div style="text-align:center">Image Preview</div>*@
+                    <div class="text-center">Image Preview</div>
+                 </div>
 
 
-
-                <br />
-                <div class="form-group pt-1">
-                    <input type="submit" class="btn btn-primary" value="Save" />
-                    
-                    <a asp-action="Index" class="btn btn-success">Back to List</a>
-                </div>
+                
             </div>
+
+            
         </form>
     </div>
 </div>
 @section Scripts{
-    @{
-        //await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
-    }
+
+
+    
+
+
+    <script >
+        $(document).ready(() => {
+            $("#imageFile").change(function () {
+                const file = this.files[0];
+                if (file) {
+                    let reader = new FileReader();
+                    reader.onload = function (event) {
+                        $("#imgPreview").attr("src", event.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+
+
+
+
     }
 
 

@@ -20,13 +20,11 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="wwwroot\Image\" />
     <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="wwwroot\Image\No-Image-Placeholder.svg.png" />
-    <None Include="wwwroot\Image\no-image-png-2.png" />
   </ItemGroup>
 
 </Project>
