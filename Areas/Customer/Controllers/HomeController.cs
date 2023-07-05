@@ -41,7 +41,7 @@ namespace OnlineShop2.Areas.Customer.Controllers
             {
                 return NotFound();
             }
-            var product = _db.Products.Include(c => c.ProductType).FirstOrDefault(c => c.Id==id);
+            var product = _db.Products.Include(c => c.ProductType).FirstOrDefault(c => c.Id == id);
             if (product == null)
             {
                 return NotFound();
@@ -53,8 +53,7 @@ namespace OnlineShop2.Areas.Customer.Controllers
         [ActionName("Details")]
         public IActionResult ProductDetails(int? id)
         {
-            List<Product> products = new List<Product>(); 
-
+            
             if (id == null)
             {
                 return NotFound();
@@ -65,7 +64,7 @@ namespace OnlineShop2.Areas.Customer.Controllers
                 return NotFound();
             }
 
-            products = HttpContext.Session.Get<List<Product>>("products");
+            List<Product> products = HttpContext.Session.Get<List<Product>>("products");
             if (products == null) 
             {
                 products = new List<Product>();
