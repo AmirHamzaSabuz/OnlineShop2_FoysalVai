@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using OnlineShop2.Data;
 using OnlineShop2.Models;
+using OnlineShop2.Utility;
 using System.Diagnostics;
 
 namespace OnlineShop2.Areas.Customer.Controllers
@@ -47,5 +48,31 @@ namespace OnlineShop2.Areas.Customer.Controllers
             }
             return View(product);
         }
+
+        [HttpPost]
+        [ActionName("Details")]
+        public IActionResult ProductDetails(int? id)
+        {
+            List<Product> products = new List<Product>(); 
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var product = _db.Products.Include(c => c.ProductType).FirstOrDefault(c => c.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            products = HttpContext.Session.Get<List<Product>>("products");
+            if (products == null) 
+            {
+                products = new List<Product>();
+            }
+            products.Add(product);
+            HttpContext.Session.Set("products", products);
+            return View(product);
+        }
     }
-}
+} 
